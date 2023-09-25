@@ -2,20 +2,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'Tickets/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'Tickets/home.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Phudu:wght@900&family=Rubik:wght@300&display=swap" rel="stylesheet">
-    <title>ZAZA</title>
+    <title>ZaZa Events</title>
 </head>
 <body>
     <header class="main_header">
-        <h2>ZaZa</h2>
-        <h3>Next events</h3>
+        <h2><a href="{% url 'home' %}">ZaZa</a></h2>
+        <h3><a href="{% url 'sign_up' %}">Sign up</a></h3>
         <h3>Log in</h3>
-        <h3>Sign up</h3>
     </header>
+    <h1 id="title">UPCOMING EVENTS</h1>
+    {% load humanize %}
+    {% for event in event_list %}
+    <div class="event_box">
+        <div class="event_banner">
+        </div>
+        <div class="event_info">
+            <p class="event_title">{{ event.name }}</p>
+            <p class="event_date">{{ event.event_date|date:"M. d, l, g a" }}</p>
+            <p class="event_data">{{ event.venue.address }}</p>
+            <p class="event_data">${{ event.price }}</p>
+            <p class="event_data" style="font-weight: bolder;">{{ event.venue }}</p>
+        </div>
+    </div>
+    {% endfor %}
+    <footer class="footer">
+        <h3>footer exhibit test</h3>
+    </footer>
 </body>
 </html>
